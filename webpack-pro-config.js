@@ -7,15 +7,17 @@ var path = require('path');
 var webpack = require('webpack');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const pxtorem = require('postcss-pxtorem');
 // webpack中生成HTML的插件，
 
 module.exports = {
   entry: {
   // 文件入口配置
-    index: './src/index',
+    index: './src/js/index',
     vendor: [
       'react',
-      'react-dom'
+      'react-dom',
+      'react-router'
     ]
     // 为了优化，切割代码，提取第三方库（实际上，我们将会引入很多第三方库）
   },
@@ -95,7 +97,8 @@ module.exports = {
   resolve: {
     // 实际就是自动添加后缀，默认是当成js文件来查找路径
     // 空字符串在此是为了resolve一些在import文件时不带文件扩展名的表达式
-    extensions: ['', '.js', 'jsx'],
+    modulesDirectories: ['node_modules', path.join(__dirname, '../node_modules')],
+    extensions: ['', '.web.js', '.js', '.json'],
 
     // 路径别名, 懒癌福音
     alias:{
@@ -137,6 +140,12 @@ module.exports = {
       // 公有样式，不需要私有化，单独配置
 
       {
+        test: /\.css$/,
+        include: path.resolve(__dirname, 'node_modules'),
+        loader: 'style!css!postcss'
+      },
+
+      {
         test: /\.(otf|eot|svg|ttf|woff|woff2).*$/,
         loader: 'url?limit=10000'
       },
@@ -150,7 +159,11 @@ module.exports = {
     return [
       require('precss'),
       require('autoprefixer'),
-      require('rucksack-css')
+      require('rucksack-css'),
+      pxtorem({
+        rootValue: 100,
+        propWhiteList: [],
+      })
     ];
   }
 };

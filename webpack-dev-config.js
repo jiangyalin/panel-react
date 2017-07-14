@@ -6,11 +6,18 @@
 
 const path = require('path');
 import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 
-import precss from 'precss';
-import autoprefixer from 'autoprefixer';
-import rucksackCss from 'rucksack-css';
+import precss from 'precss'
+import autoprefixer from 'autoprefixer'
+import rucksackCss from 'rucksack-css'
+import px2rem from 'postcss-pxtorem';
+const px2remOpts = {
+  rootValue: 100,
+  replace: false,
+  propWhiteList: []
+};
+
 export default {
   debug: true,
   devtool: 'cheap-module-eval-source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
@@ -19,12 +26,12 @@ export default {
     './src/webpack-public-path',  // 服务器静态资源路径配置，保证首先载入
     'react-hot-loader/patch',
     'webpack-hot-middleware/client?reload=true',
-    path.resolve(__dirname, 'src/index.js')
+    path.resolve(__dirname, 'src/js/index.js')
   ],
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
     path: `${__dirname}/src`, // Note: Physical files are only output by the production build task `npm run build`.
-    publicPath: '/', // 服务器静态资源路径配置
+    publicPath: '/',
     filename: 'bundle.js'
   },
   plugins: [
@@ -49,7 +56,8 @@ export default {
     })
   ],
   resolve: {
-    extensions: ['', '.js', 'jsx'],
+    modulesDirectories: ['node_modules', path.join(__dirname, '../node_modules')],
+    extensions: ['', '.web.js', '.js', '.json'],
 
     // 路径别名, 懒癌福音
     alias:{
@@ -90,6 +98,12 @@ export default {
       // 公有样式，不需要私有化，单独配置
 
       {
+        test: /\.css$/,
+        include: path.resolve(__dirname, 'node_modules'),
+        loader: 'style!css!postcss'
+      },
+      
+      {
         test: /\.(otf|eot|svg|ttf|woff|woff2).*$/,
         loader: 'url?limit=10000'
       },
@@ -99,5 +113,5 @@ export default {
       }
     ]
   },
-  postcss: ()=> [precss,autoprefixer,rucksackCss]
+  postcss: ()=> [precss,autoprefixer,rucksackCss,px2rem(px2remOpts)]
 };

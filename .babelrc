@@ -10,6 +10,7 @@
   ],
   "plugins": [
     "react-hot-loader/babel",
+    ["import", { "style": "css", "libraryName": "antd-mobile" }],
     ["transform-runtime", {
       "helpers": false,
       "polyfill": false,
