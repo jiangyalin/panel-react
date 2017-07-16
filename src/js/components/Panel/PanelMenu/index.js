@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './index.scss'
 
-const PanelMenu = ({text, option, add}) => {
+const PanelMenu = ({text, option}) => {
   return (
     <div className={styles.box}>
       <div className={styles.imgGroup}>

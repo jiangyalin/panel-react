@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { UserInfo } from '../../components'
+import { Nav } from '../../components'
 
-export default class User extends Component {
+export default class Illustration extends Component {
   state = {
     userInfo: {
-      name: '一方通行2',
+      name: '一方通行3',
       Email: '18725944157@163.com',
       telephone: '18725944157'
     }
@@ -13,7 +13,7 @@ export default class User extends Component {
     const { userInfo } = this.state;
     return (
       <div>
-        <UserInfo data={userInfo} />
+        <Nav />
       </div>
     )
   }

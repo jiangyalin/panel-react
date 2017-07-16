@@ -5,7 +5,8 @@ import { Route, IndexRoute } from 'react-router'
 import {
   App,
   Home,
-  User
+  User,
+  Illustration
 } from './containers'
 
 export default (
@@ -13,6 +14,9 @@ export default (
     <IndexRoute component={Home} />
     <Route path="user">
       <IndexRoute component={User} />
+    </Route>
+    <Route path="illustration">
+      <IndexRoute component={Illustration} />
     </Route>
   </Route>
 );
