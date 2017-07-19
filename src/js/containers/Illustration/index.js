@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Nav } from '../../components'
+import { Nav, PixivTitle } from '../../components'
 
 export default class Illustration extends Component {
   state = {
@@ -13,6 +13,7 @@ export default class Illustration extends Component {
     const { userInfo } = this.state;
     return (
       <div>
+        <PixivTitle />
         <Nav />
       </div>
     )
