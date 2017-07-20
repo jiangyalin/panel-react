@@ -1,16 +1,19 @@
-// 配置开发Web服务器。
-// 支持热重加载和同步测试。
+// This file configures the development web server
+// which supports hot reloading and synchronized testing.
 
-import browserSync from 'browser-sync'; // 多平台同步刷新
+// Require Browsersync along with webpack and middleware for it
+import browserSync from 'browser-sync';
+// Required for react-router browserHistory
+// see https://github.com/BrowserSync/browser-sync/issues/204#issuecomment-102623643
 import historyApiFallback from 'connect-history-api-fallback';
 import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware'; // 文件放入内存
-import webpackHotMiddleware from 'webpack-hot-middleware'; // 热启动
-import config from './webpack-dev-config'; // 引入配置文件
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import config from './webpack-dev-config';
 
 const bundler = webpack(config);
 
-// 热模块替换
+// Run Browsersync and use middleware for Hot Module Replacement
 browserSync({
   port: 8888,
   ui: {
@@ -19,15 +22,15 @@ browserSync({
   server: {
     baseDir: 'src',
 
-    // 中间件
     middleware: [
-      historyApiFallback(), // 对于正在使用HTML 5历史记录API的应用程序，可以追溯到index.html
+      historyApiFallback(),
 
       webpackDevMiddleware(bundler, {
-        // 将中间件绑定到的公共路径
+        // Dev middleware can't access config, so we provide publicPath
         publicPath: config.output.publicPath,
 
-        noInfo: false, // 不显示控制台信息（仅警告和错误）
+        // These settings suppress noisy webpack output so only errors are displayed to the console.
+        noInfo: false,
         quiet: false,
         stats: {
           assets: false,
@@ -39,7 +42,7 @@ browserSync({
           chunkModules: false
         },
 
-        // 其他参数见
+        // for other settings see
         // http://webpack.github.io/docs/webpack-dev-middleware.html
       }),
 
@@ -49,7 +52,7 @@ browserSync({
   },
 
   // no need to watch '*.js' here, webpack will take care of it for us,
-  // 载如果HMR失败重载页面
+  // including full page reloads if HMR won't work
   files: [
     'src/*.html'
   ]

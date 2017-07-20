@@ -3,10 +3,10 @@
  *
  * 注意。两种模式的配置有较大差异！！
  */
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const pxtorem = require('postcss-pxtorem');
 // webpack中生成HTML的插件，
 
@@ -17,7 +17,9 @@ module.exports = {
     vendor: [
       'react',
       'react-dom',
-      'react-router'
+      'react-router',
+      'react-redux',
+      'redux'
     ]
     // 为了优化，切割代码，提取第三方库（实际上，我们将会引入很多第三方库）
   },
@@ -102,15 +104,15 @@ module.exports = {
 
     // 路径别名, 懒癌福音
     alias:{
-			app:path.resolve(__dirname,'src/js'),
-			// 以前你可能这样引用 import { Nav } from '../../components'
-			// 现在你可以这样引用 import { Nav } from 'app/components'
+      app:path.resolve(__dirname,'src/js'),
+      // 以前你可能这样引用 import { Nav } from '../../components'
+      // 现在你可以这样引用 import { Nav } from 'app/components'
 
-			style:path.resolve(__dirname,'src/styles')
-			// 以前你可能这样引用 import "../../../styles/mixins.scss"
-			// 现在你可以这样引用 import "style/mixins.scss"
+      style:path.resolve(__dirname,'src/styles')
+      // 以前你可能这样引用 import "../../../styles/mixins.scss"
+      // 现在你可以这样引用 import "style/mixins.scss"
 
-			// 注意：别名只能在.js文件中使用。
+      // 注意：别名只能在.js文件中使用。
     }
   },
 
