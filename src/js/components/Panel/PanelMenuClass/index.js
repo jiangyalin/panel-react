@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './index.scss'
 
-const PanelMenu = ({title}) => {
+const PanelMenuClass = ({title}) => {
   return (
     <div className={styles.box}>
       {title}
@@ -9,4 +9,4 @@ const PanelMenu = ({title}) => {
   )
 };
 
-export default PanelMenu
+export default PanelMenuClass

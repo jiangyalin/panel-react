@@ -2,7 +2,7 @@ import React from 'react'
 import NavLink from './NavLink'
 import styles from './index.scss'
 
-const PanelMenu = () => {
+const Nav = () => {
   return (
     <div className={styles.box}>
       <ul className={styles.ul}>
@@ -20,4 +20,4 @@ const PanelMenu = () => {
   )
 };
 
-export default PanelMenu
+export default Nav

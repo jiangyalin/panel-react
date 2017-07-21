@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import styles from './index.scss'
 
-const PanelMenu = ({data}) => {
+const PixivTitle = ({data}) => {
   return (
     <div className={styles.box}>
       <div className={styles.btn}>
@@ -35,4 +35,4 @@ const PanelMenu = ({data}) => {
   )
 };
 
-export default PanelMenu
+export default PixivTitle

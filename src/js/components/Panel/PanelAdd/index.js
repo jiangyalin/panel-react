@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './index.scss'
 
-const PanelMenu = ({text}) => {
+const PanelAdd = ({text}) => {
   return (
     <div className={styles.box}>
       <div className={styles.imgGroup}>
@@ -14,4 +14,4 @@ const PanelMenu = ({text}) => {
   )
 };
 
-export default PanelMenu
+export default PanelAdd
