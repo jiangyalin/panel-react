@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
-import { Nav, PixivTitle, PixivLeftNav } from '../../components'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
-export default class Illustration extends Component {
+import { Nav, PixivTitle, PixivLeftNav } from '../../components'
+import * as CounterActions from '../../actions/CounterActions'
+
+class Illustration extends Component {
   state = {
     userInfo: {
       name: '一方通行3',
@@ -20,3 +24,13 @@ export default class Illustration extends Component {
     )
   }
 }
+
+function select(state) {
+  return {
+    counter: state.counter,
+    asyncBool: state.illustration.asyncBool,
+    asyncCountDown: state.illustration.asyncCountDown
+  }
+}
+
+export default connect(select)(Illustration)

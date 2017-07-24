@@ -1,15 +1,15 @@
+import React, { Component } from 'react'
+import { Provider } from 'react-redux'
+import { Router } from 'react-router'
+import routes from '../routes' // 路由
+
 import '../../styles/app.scss'
 import '../../styles/font-awesome/css/font-awesome.min.scss'
 
-import React, { Component } from 'react'
-import routes from '../routes'
-import { Router } from 'react-router'
+const Root = ({ store, history }) => (
+  <Provider store={store}>
+    <Router history={history} routes={routes} />
+  </Provider>
+);
 
-export default class Root extends Component {
-  render() {
-    const { history } = this.props;
-    return (
-      <Router history={history} routes={routes} />
-    )
-  }
-}
+export default Root
