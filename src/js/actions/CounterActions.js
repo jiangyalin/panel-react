@@ -1,11 +1,11 @@
 import {
-  INCREMENT_COUNTER,
-  DECREMENT_COUNTER,
-  INCREMENT_ASYNC
+  START,
+  STOP,
+  RESET
 } from './actionsTypes'
 
-export const increment = () => ({ type: INCREMENT_COUNTER })
+export const onA = () => ({ type: START })
 
-export const decrement = () => ({ type: DECREMENT_COUNTER })
+export const onB = () => ({ type: STOP })
 
-export const onIncrementAsync = () => ({ type: INCREMENT_ASYNC })
+export const onC = () => ({ type: RESET })
