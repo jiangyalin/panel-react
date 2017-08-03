@@ -21,7 +21,7 @@ browserSync({
   },
   server: {
     baseDir: 'src',
-
+    
     middleware: [
       historyApiFallback(),
 
