@@ -15,7 +15,7 @@ const Timer = props => {
         onClick={props.onReset}
         disabled={props.status === 'Running'}
       >
-        重置
+        重置{props.seconds}
       </button>
 
       <button

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { Nav, PixivTitle, PixivLeftNav } from '../../components'
-import * as CounterActions from '../../actions/CounterActions'
+// import * as CounterActions from '../../actions/CounterActions'
 
 class Illustration extends Component {
   state = {

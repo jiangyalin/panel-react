@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
-  Panel
+  Panel,
+  Timer
 } from '../../components'
 
-export default class App extends Component {
+class Home extends Component {
   state = {
     userInfo: {
       name: '一方通行'
@@ -29,10 +31,20 @@ export default class App extends Component {
   };
   render() {
     const { userInfo, flagItem, otherProject } = this.state;
+    const { state } = this.props;
     return (
       <div className="box">
-        <Panel userInfo={userInfo} flagItem={flagItem} otherProject={otherProject} />
+        <Timer {...state} userInfo={userInfo} />l
+        <Panel {...state} />
       </div>
     )
   }
 }
+
+const mapStateToProps = state => ({
+  state: state.timer
+});
+
+export default connect(
+  mapStateToProps
+)(Home)
