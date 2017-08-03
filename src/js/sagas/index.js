@@ -10,9 +10,9 @@ import { watchPost } from './posts'
 // 单一进入点，一次启动所有 Saga
 export default function* rootSaga() {
   yield [
-    fork(watchIncrementAsync),
-    fork(watchFirstThreeTodosCreation),
-    fork(watchTimer),
-    fork(watchPost)
+    // fork(watchIncrementAsync),
+    // fork(watchFirstThreeTodosCreation),
+    // fork(watchTimer),
+    // fork(watchPost)
   ]
 }

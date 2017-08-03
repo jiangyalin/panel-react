@@ -14,10 +14,10 @@ class Illustration extends Component {
     }
   };
   render() {
-    const { userInfo } = this.state;
+    const { state, actions } = this.state;
     return (
       <div>
-        <PixivLeftNav />
+        <PixivLeftNav {...state} {...actions} />
         <PixivTitle />
         <Nav />
       </div>
@@ -25,12 +25,8 @@ class Illustration extends Component {
   }
 }
 
-function select(state) {
-  return {
-    counter: state.counter,
-    asyncBool: state.illustration.asyncBool,
-    asyncCountDown: state.illustration.asyncCountDown
-  }
-}
+const select = state => ({
+    state: state.illustration
+})
 
 export default connect(select)(Illustration)

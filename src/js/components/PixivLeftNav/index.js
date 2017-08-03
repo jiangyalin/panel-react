@@ -4,15 +4,15 @@ import PixivLeftInfo from './PixivLeftInfo'
 import PixivLeftTitle from './PixivLeftTitle'
 import styles from './index.scss'
 
-const PixivLeftNav = ({data}) => {
+const PixivLeftNav = ({props}) => {
   return (
     <div className={styles.box}>
       <div className={styles.bd}>
         <div className={styles.mn}>
           <PixivLeftInfo/>
           <ul className={styles.lst}>
-            <li className={styles.li}>
-              <PixivLeftLink path="/" icon="fa-home" text="主页"/>
+            <li className={styles.li}>{props.seconds}
+              <PixivLeftLink path="" icon="fa-home" text="主fdfs页" onClick={props.onB}/>
             </li>
             <li className={styles.li}>
               <PixivLeftLink path="/" icon="fa-lemon-o" text="最新"/>
